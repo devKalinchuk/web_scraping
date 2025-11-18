@@ -4,12 +4,10 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from time import sleep
 from fake_useragent import UserAgent
+from config import CHROME_DRIVER_PATH, url_book
 
 
 user_agent = UserAgent()
-url = 'INPUT_URL_HERE'
-CHROME_DRIVER_PATH = "PATH_TO_CHROME_DRIVER"
-
 chrome_options = Options()
 chrome_options.add_argument("--disable-blink-features=AutomationControlled")
 chrome_options.add_argument("user-agent=" + user_agent.chrome)
@@ -17,8 +15,9 @@ chrome_options.add_argument('--headless')
 driver = webdriver.Chrome(service=Service(CHROME_DRIVER_PATH), options=chrome_options)
 driver.maximize_window()
 
+
 try:
-    driver.get(url)
+    driver.get(url_book)
     driver.execute_script("document.documentElement.style.scrollBehavior = 'smooth';")
     with open('url_pages.txt', 'w') as file:
         for i in range(1, 671):

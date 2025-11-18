@@ -1,15 +1,15 @@
 import requests as r
 from fake_useragent import UserAgent
 import img2pdf
+from config import url_math
 
 user = UserAgent().random
 header = {'User-Agent': user}
 
-html = 'URL_HERE'
 images = []
 
 for i in range(1, 145):
-    url = f'{html}{i:03d}.jpg'
+    url = f'{url_math}{i:03d}.jpg'
     download = r.get(url, headers=header).content
 
     images.append(download)

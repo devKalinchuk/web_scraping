@@ -4,16 +4,16 @@ from fake_useragent import UserAgent
 import img2pdf
 from PIL import Image
 from io import BytesIO
+from config import url_lang
 
 user = UserAgent().random
 header = {'User-Agent': user}
 
-html = 'INPUT_URL_HERE'
 images = []
 target_width = 1200
 
 for i in range(1, 15):
-    url = f'{html}/{i}/'
+    url = f'{url_lang}/{i}/'
     web = r.get(url, headers=header).text
     bs = BeautifulSoup(web, 'lxml')
     image = bs.find('div', class_='photo mb-4').find('img', class_='img-fluid').attrs['src']
